@@ -4,6 +4,7 @@ import {
   MyMessage,
   TextMessageBox,
   TextMessageBoxFile,
+  TextMessageBoxSelect,
   Typingloader,
 } from "../../components"
 
@@ -48,15 +49,11 @@ export const OrthographyPage = () => {
           )}
         </div>
       </div>
-      {/* <TextMessageBox
+      <TextMessageBox
         onSendMessage={handlePost}
         placeholder="Tu mensaje aqui"
         disableCorrections
-      /> */}
-      {/* <TextMessageBoxFile
-        onSendMessage={handlePost}
-        placeholder="Tu mensaje aqui"
-      /> */}
+      />
     </div>
   )
 }
