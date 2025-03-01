@@ -3,16 +3,15 @@ import {
   GptMessage,
   MyMessage,
   TextMessageBox,
-  TextMessageBoxFile,
   Typingloader,
-} from "../../components"
+} from "../components/index"
 
 interface Message {
   text: string
   isGpt: Boolean
 }
 
-export const OrthographyPage = () => {
+export const ChatTemplate = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
 
@@ -48,15 +47,11 @@ export const OrthographyPage = () => {
           )}
         </div>
       </div>
-      {/* <TextMessageBox
+      <TextMessageBox
         onSendMessage={handlePost}
         placeholder="Tu mensaje aqui"
         disableCorrections
-      /> */}
-      {/* <TextMessageBoxFile
-        onSendMessage={handlePost}
-        placeholder="Tu mensaje aqui"
-      /> */}
+      />
     </div>
   )
 }
