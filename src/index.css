@@ -10,6 +10,12 @@ body {
 h1 {
   @apply text-3xl font-bold mb-4;
 }
+h3 {
+  @apply text-2xl text-green-300 font-bold mb-4;
+}
+h4 {
+  @apply text-xl text-green-500 font-bold mb-4;
+}
 
 p {
   @apply mb-4;
