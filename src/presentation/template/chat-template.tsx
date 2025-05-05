@@ -3,7 +3,7 @@ import {
   GptMessage,
   MyMessage,
   TextMessageBox,
-  Typingloader,
+  TypingLoader,
 } from "../components/index"
 
 interface Message {
@@ -42,7 +42,7 @@ export const ChatTemplate = () => {
 
           {isLoading && (
             <div className="col-start-1 col-end-12 fade-in">
-              <Typingloader />
+              <TypingLoader />
             </div>
           )}
         </div>
