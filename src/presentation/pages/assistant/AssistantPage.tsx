@@ -5,7 +5,10 @@ import {
   TextMessageBox,
   TypingLoader,
 } from "../../components/index"
-import { createThreadUseCase } from "../../../core/use-cases"
+import {
+  createThreadUseCase,
+  postQuestionUseCase,
+} from "../../../core/use-cases"
 
 interface Message {
   text: string
@@ -31,24 +34,34 @@ export const AssistantPage = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (threadId) {
-      setMessages((prev) => [
-        ...prev,
-        { text: `ThreadId: ${threadId}`, isGpt: true },
-      ])
-    }
-  }, [threadId])
+  // useEffect(() => {
+  //   if (threadId) {
+  //     setMessages((prev) => [
+  //       ...prev,
+  //       { text: `ThreadId: ${threadId}`, isGpt: true },
+  //     ])
+  //   }
+  // }, [threadId])
 
   const handlePost = async (text: string) => {
+    if (!threadId) return
+
     setIsLoading(true)
     setMessages((prev) => [...prev, { text: text, isGpt: false }])
 
-    //TODO: UseCase
+    // UseCase
+    const replies = await postQuestionUseCase(threadId, text)
 
     setIsLoading(false)
 
-    //TODO: Añadir el mensaje de isGpt en true
+    for (const reply of replies) {
+      for (const message of reply.content) {
+        setMessages((prev) => [
+          ...prev,
+          { text: message, isGpt: reply.role === "assistant", info: reply },
+        ])
+      }
+    }
   }
   return (
     <div className="chat-container">
